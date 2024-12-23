@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { taskService } from "../model/taskService";
+import { taskService } from "../modules/taskService";
 import { ITask } from "../../../types/task.types";
 
 type Props = {
@@ -11,8 +11,8 @@ export default function useCreateTask() {
 
   const { mutate, error, isPending, isSuccess } = useMutation({
     mutationFn: ({ taskData }: Props) => taskService.createTask({ taskData }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    async onSuccess() {
+      await queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
   });
 

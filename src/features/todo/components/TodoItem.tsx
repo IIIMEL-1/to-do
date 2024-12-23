@@ -1,16 +1,9 @@
-import {
-  Trash2,
-  Edit,
-  XIcon,
-  LoaderCircle,
-  CircleCheck,
-  CircleIcon,
-  Check,
-} from "lucide-react";
+import { Trash2, Edit, XIcon, Check } from "lucide-react";
 import { ITask } from "../../../types/task.types";
 import useUpdateTask from "../hooks/useUpdateTask";
 import { useState } from "react";
 import useDeleteTask from "../hooks/useDeleteTask";
+import TodoCheckbox from "../ui/TodoCheckbox";
 
 type Props = {
   task: ITask;
@@ -24,7 +17,7 @@ export default function TodoItem({ task }: Props) {
   const { mutate: deleteTask, isPending: isDeleting } = useDeleteTask();
 
   const handleEdit = () => {
-    if (isUpdating) return;
+    if (isDeleting || isUpdating) return;
 
     const taskData = {
       id: task.id,
@@ -38,7 +31,7 @@ export default function TodoItem({ task }: Props) {
   };
 
   const handleToggle = () => {
-    if (isUpdating) return;
+    if (isDeleting || isUpdating) return;
 
     const taskData = {
       id: task.id,
@@ -52,7 +45,7 @@ export default function TodoItem({ task }: Props) {
   };
 
   const handleDelete = () => {
-    if (isDeleting) return;
+    if (isDeleting || isUpdating) return;
 
     deleteTask({ id: task.id });
   };
@@ -62,37 +55,12 @@ export default function TodoItem({ task }: Props) {
       key={task.id}
       className="flex items-center group min-h-16 px-4 overflow-hidden border-b-[1px] text-[--text-color] text-xl"
     >
-      <label
-        className={`flex justify-center items-center w-9 h-9 mr-4 cursor-pointer *:transition-colors ${
-          task.completed
-            ? "*:stroke-[--checkbox-checked-color]"
-            : "hover:*:stroke-[--checkbox-checked-color]"
-        }`}
-      >
-        <input
-          className="hidden"
-          type="checkbox"
-          checked={task.completed}
-          onChange={handleToggle}
-        />
-
-        {isUpdating || isDeleting ? (
-          <LoaderCircle
-            className="animate-[spin_1.5s_linear_infinite] stroke-[--checkbox-checked-color]"
-            size={"36px"}
-          />
-        ) : task.completed ? (
-          <CircleCheck
-            className="stroke-[--checkbox-checked-color]"
-            size={"34px"}
-          />
-        ) : (
-          <CircleIcon
-            className="stroke-[--checkbox-unchecked-color]"
-            size={"34px"}
-          />
-        )}
-      </label>
+      <TodoCheckbox
+        completed={task.completed}
+        handleToggle={handleToggle}
+        isDeleting={isDeleting}
+        isUpdating={isUpdating}
+      />
       <input
         className={`outline-none grow ${
           task.completed && "line-through opacity-30"
@@ -126,7 +94,9 @@ export default function TodoItem({ task }: Props) {
               </button>
             </>
           ) : (
-            <button onClick={(_) => setIsEdit(true)}>
+            <button
+              onClick={(_) => !isDeleting && !isUpdating && setIsEdit(true)}
+            >
               <Edit
                 className="focus-visible:stroke-[--text-color] stroke-[--checkbox-checked-color]"
                 size={"22px"}

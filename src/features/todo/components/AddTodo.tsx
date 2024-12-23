@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useCreateTask from "../hooks/useCreateTask";
+import { LoaderCircle } from "lucide-react";
 
 type Props = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +15,7 @@ export default function AddTodo({ setIsOpen, isOpen }: Props) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!value) return;
+    if (!value || isPending) return;
 
     const taskData = {
       title: value,
@@ -40,21 +41,30 @@ export default function AddTodo({ setIsOpen, isOpen }: Props) {
           ❯
         </span>
       </button>
-      <form className="flex w-11/12" onSubmit={(e) => handleSubmit(e)}>
+      <form className="flex grow" onSubmit={(e) => handleSubmit(e)}>
         <input
           className="flex w-full h-full pl-3 text-[--text-color] italic text-2xl font-extralight placeholder:opacity-35 placeholder:text-[22px]  outline-none"
           type="text"
           placeholder="What needs to be done?"
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          disabled={isPending}
         />
 
-        {value && (
+        {(value || isPending) && (
           <button
             disabled={isPending}
-            className="min-w-20 border-l-[1px] text-xl"
+            className={`flex justify-center items-center min-w-20 border-l-[1px] text-xl transition outline-none ${
+              isPending
+                ? ""
+                : "hover:text-[--text-color] focus:text-[--text-color]"
+            }`}
           >
-            Add
+            {isPending ? (
+              <LoaderCircle className="animate-spin" size={"36px"} />
+            ) : (
+              "Add"
+            )}
           </button>
         )}
       </form>

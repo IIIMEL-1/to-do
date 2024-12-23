@@ -5,7 +5,7 @@
       "@components/*": ["src/features/todo/components/*"],
       "@hooks/*": ["src/features/todo/hooks/*"],
       "@types/*": ["src/types/*"],
-      "@services/*": ["src/features/todo/model/*"],
+      "@services/*": ["src/features/todo/modules/*"],
       "@ui/*": ["src/features/todo/ui/*"],
       "@shared/*": ["src/shared/*"]
     }

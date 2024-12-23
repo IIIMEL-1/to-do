@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useSetAtom } from "jotai";
-import { taskService } from "../model/taskService";
+import { taskService } from "../modules/taskService";
 import { tasksAtom } from "../../../shared/state/store";
 import { useEffect } from "react";
 

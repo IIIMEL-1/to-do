@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { taskService } from "../model/taskService";
+import { taskService } from "../modules/taskService";
 
 type Props = {
   id: number;
