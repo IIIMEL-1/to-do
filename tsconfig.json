@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/features/todo/components/*"],
+      "@hooks/*": ["src/features/todo/hooks/*"],
+      "@types/*": ["src/types/*"],
+      "@services/*": ["src/features/todo/model/*"],
+      "@ui/*": ["src/features/todo/ui/*"],
+      "@shared/*": ["src/shared/*"]
+    }
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}

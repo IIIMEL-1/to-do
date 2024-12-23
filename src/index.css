@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Inter", sans-serif;
+
+  color: #e9dad9;
+  background-color: #f5f5f5;
+
+  --text-color: #4f4f4f;
+  --text-secondary-color: #a7a7a7;
+  --border-color: #e9dad9;
+  --button-color: #4caf50;
+  --button-hover-color: #45a049;
+  --checkbox-checked-color: #80c4b4;
+  --checkbox-unchecked-color: #e9dad9;
+  --checkbox-hover-color: #4caf50;
+  --checkbox-disabled-color: #e9dad9;
+}
