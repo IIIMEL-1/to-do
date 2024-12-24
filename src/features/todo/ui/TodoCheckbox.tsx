@@ -16,7 +16,7 @@ export default function TodoCheckbox({
 }: TodoCheckboxProps) {
   return (
     <label
-      className={`flex justify-center items-center w-9 h-9 mr-4 cursor-pointer *:transition-colors ${
+      className={`flex justify-center items-center w-9 h-9  max-[475px]:mr-2 mr-4 cursor-pointer *:transition-colors ${
         completed
           ? "*:stroke-[--checkbox-checked-color]"
           : "hover:*:stroke-[--checkbox-checked-color]"

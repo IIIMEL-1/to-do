@@ -53,7 +53,7 @@ export default function TodoItem({ task }: Props) {
   return (
     <div
       key={task.id}
-      className="flex items-center group min-h-16 px-4 overflow-hidden border-b-[1px] text-[--text-color] text-xl"
+      className="flex items-center group max-[475px]:min-h-14 min-h-16 max-[475px]:px-2 px-4 overflow-hidden border-b-[1px] text-[--text-color] text-xl"
     >
       <TodoCheckbox
         completed={task.completed}
@@ -62,7 +62,7 @@ export default function TodoItem({ task }: Props) {
         isUpdating={isUpdating}
       />
       <input
-        className={`outline-none grow ${
+        className={`outline-none grow max-[480px]:text-[18px] max-[440px]:w-[45vw] ${
           task.completed && "line-through opacity-30"
         } ${isEdit && "border-b-2"}`}
         type="text"
@@ -71,7 +71,7 @@ export default function TodoItem({ task }: Props) {
         onChange={(e) => setValue(e.target.value)}
       />
       <div
-        className={`flex items-center gap-4 px-2 *:outline-none ${
+        className={`flex items-center max-[400px]:gap-x-2 gap-x-4 px-2 *:outline-none ${
           isEdit
             ? "translate-x-0 opacity-100"
             : "translate-x-20 group-focus-within:translate-x-0 group-focus-within:opacity-100 group-hover:translate-x-0 group-hover:opacity-100"

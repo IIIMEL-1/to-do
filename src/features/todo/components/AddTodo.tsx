@@ -28,7 +28,7 @@ export default function AddTodo({ setIsOpen, isOpen }: Props) {
   };
 
   return (
-    <div className="flex w-full h-16 bg-[#fefefe] border-b-2">
+    <div className="flex w-full max-[475px]:h-14 h-16 bg-[#fefefe] border-b-2">
       <button
         onClick={(_) => setIsOpen((prev: boolean) => !prev)}
         className="w-1/12 font-semibold"
@@ -54,7 +54,7 @@ export default function AddTodo({ setIsOpen, isOpen }: Props) {
         {(value || isPending) && (
           <button
             disabled={isPending}
-            className={`flex justify-center items-center min-w-20 border-l-[1px] text-xl transition outline-none ${
+            className={`flex justify-center items-center max-[475px]:min-w-14 min-w-20 border-l-[1px] text-xl transition outline-none ${
               isPending
                 ? ""
                 : "hover:text-[--text-color] focus:text-[--text-color]"

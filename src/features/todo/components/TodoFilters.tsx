@@ -18,12 +18,12 @@ export default function TodoFilters() {
   const [currentFilter, setCurrentFilter] = useAtom(filterAtom);
 
   return (
-    <div className="flex justify-between w-full p-3 text-sm text-[--text-secondary-color] border-t-[1px]">
-      <span className="w-24">
+    <div className="flex justify-between max-[400px]:flex-col max-[400px]:items-center max-[400px]:gap-y-2 max-[400px]:p-1 w-full p-3 text-sm text-[--text-secondary-color] border-t-[1px]">
+      <span className="flex justify-center items-center w-24">
         {tasksData.length}
         {tasksData.length <= 1 ? " task left" : " tasks left"}
       </span>
-      <div className="flex gap-x-3 *:border-[1px] *:border-[--text-color] text-[--text-color] *:rounded-md *:px-2 *:transition">
+      <div className="flex gap-x-3 max-[640px]:gap-x-2  max-[475px]:gap-x-1 *:border-[1px] *:border-[--text-color] text-[--text-color] *:rounded-md *:px-2 *:transition">
         {FILTERS.map((filter) => (
           <button
             key={filter}
@@ -39,9 +39,9 @@ export default function TodoFilters() {
         ))}
       </div>
       <button
-        disabled={isPending}
+        disabled={isPending || tasksData.length === tasks.length}
         onClick={clearCompletedTask}
-        className="opacity-75 hover:opacity-100 focus-within:opacity-100 w-28 outline-none"
+        className="opacity-75 hover:opacity-100 focus-within:opacity-100 w-32 outline-none disabled:opacity-35"
       >
         {isPending ? "Clearing..." : "Clear completed"}
       </button>

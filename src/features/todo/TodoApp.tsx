@@ -12,9 +12,9 @@ export default function TodoApp() {
 
   return (
     <main className="flex justify-center w-full">
-      <section className="flex flex-col items-center mt-44">
-        <h1 className="font-thin text-8xl">todos</h1>
-        <section className="flex flex-col w-[600px] items-center mt-4 bg-white border-[1px] shadow-xl">
+      <section className="flex flex-col items-center sm:my-44 my-[2vh]">
+        <h1 className="font-thin text-8xl max-[480px]:text-7xl">todos</h1>
+        <section className="flex flex-col w-[600px] max-[640px]:w-[95vw] items-center mt-4 bg-white border-[1px] shadow-xl">
           <AddTodo setIsOpen={setIsOpen} isOpen={isOpen} />
 
           <TodoList isOpen={isOpen} />
