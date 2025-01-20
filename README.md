@@ -1,2 +1,2 @@
-# to-do
-it's a test task for mindbox
+# to-do app
+Стек: React, TypeScript, TanStack Query, Axios, Jotai, FSD (упрощённая версия)
